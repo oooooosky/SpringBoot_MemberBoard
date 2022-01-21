@@ -24,7 +24,7 @@ public class BoardDetailDTO {
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
     private List<CommentDetailDTO> commentList;
-    private Long boardHits;
+    private int boardHits;
 
     public static BoardDetailDTO toBoardDetailDTO(BoardEntity boardEntity) {
         BoardDetailDTO boardDetailDTO = new BoardDetailDTO();

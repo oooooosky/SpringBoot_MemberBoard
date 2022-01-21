@@ -33,7 +33,7 @@ public class BoardEntity extends BaseEntity{
     private String boardContents;
 
     @Column
-    private Long boardHits;
+    private int boardHits;
 
     // 회원 엔티티와의 관계
     @ManyToOne(fetch = FetchType.LAZY)
@@ -51,7 +51,7 @@ public class BoardEntity extends BaseEntity{
         boardEntity.setBoardContents(boardSaveDTO.getBoardContents());
         boardEntity.setBoardFilename(boardSaveDTO.getBoardFilename());
         boardEntity.setMemberEntity(memberEntity);
-        boardEntity.setBoardHits(0L);
+        boardEntity.setBoardHits(0);
         return boardEntity;
     }
 

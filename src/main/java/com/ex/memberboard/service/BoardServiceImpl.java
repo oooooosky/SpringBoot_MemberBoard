@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -70,10 +71,12 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public BoardDetailDTO findById(Long boardId) {
+        int boardHits = br.boardHits(boardId);
         BoardEntity boardEntity = br.findById(boardId).get();
-        BoardEntity boardHits = BoardEntity.toHitsBoardEntity(boardEntity);
-        br.save(boardHits);
+//        BoardEntity boardHits = BoardEntity.toHitsBoardEntity(boardEntity);
+//        br.save(boardHits);
         BoardDetailDTO boardDetailDTO = BoardDetailDTO.toBoardDetailDTO(boardEntity);
         return boardDetailDTO;
     }
@@ -119,12 +122,12 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardDetailDTO> search(BoardSearchDTO boardSearchDTO) {
         if (boardSearchDTO.getChoice().equals("writer")) {
-            List<BoardEntity> boardEntityList = br.findByBoardWriter(boardSearchDTO.getKeyword());
+            List<BoardEntity> boardEntityList = br.findByBoardWriterContaining(boardSearchDTO.getKeyword());
             List<BoardDetailDTO> boardDetailDTOList = BoardDetailDTO.toBoardDetailList(boardEntityList);
             System.out.println("boardDetailDTOList = " + boardDetailDTOList);
             return boardDetailDTOList;
         } else {
-            List<BoardEntity> boardEntityList = br.findByBoardTitle(boardSearchDTO.getKeyword());
+            List<BoardEntity> boardEntityList = br.findByBoardTitleContaining(boardSearchDTO.getKeyword());
             List<BoardDetailDTO> boardDetailDTOList = BoardDetailDTO.toBoardDetailList(boardEntityList);
             System.out.println("boardDetailDTOList = " + boardDetailDTOList);
             return boardDetailDTOList;

@@ -12,6 +12,6 @@ public class BoardPagingDTO {
     private Long boardId;
     private String boardWriter;
     private String boardTitle;
-    private Long boardHits;
+    private int boardHits;
 
 }
