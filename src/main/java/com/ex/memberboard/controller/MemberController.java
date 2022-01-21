@@ -81,6 +81,11 @@ public class MemberController {
         MemberDetailDTO memberDetailDTO = ms.findByEmail(memberLoginDTO);
         try {
             if (!memberDetailDTO.equals(null)) {
+                if (memberDetailDTO.getMemberEmail().equals("admin")) {
+                    session.setAttribute("loginId", memberDetailDTO.getMemberId());
+                    session.setAttribute("loginEmail", memberDetailDTO.getMemberEmail());
+                    return new ResponseEntity<String>("admin",HttpStatus.OK);
+                }
                 session.setAttribute("loginId", memberDetailDTO.getMemberId());
                 session.setAttribute("loginEmail", memberDetailDTO.getMemberEmail());
                 String redirectURL = (String) session.getAttribute("redirectURL");
@@ -101,17 +106,22 @@ public class MemberController {
         }
     }
 
-    @PostMapping("adminLogin")
-    public ResponseEntity adminLogin(@RequestBody MemberLoginDTO memberLoginDTO, HttpSession session) {
-        MemberDetailDTO memberDetailDTO = ms.findByEmail(memberLoginDTO);
-        if (!memberDetailDTO.equals(null)) {
-            session.setAttribute("loginId", memberDetailDTO.getMemberId());
-            session.setAttribute("loginEmail", memberDetailDTO.getMemberEmail());
-            return new ResponseEntity(HttpStatus.OK);
-        } else {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @PostMapping("adminLogin")
+//    public ResponseEntity adminLogin(@RequestBody MemberLoginDTO memberLoginDTO, HttpSession session) {
+//        MemberDetailDTO memberDetailDTO = ms.findByEmail(memberLoginDTO);
+//        System.out.println("memberDetailDTO = " + memberDetailDTO);
+//        try {
+//            if (!memberDetailDTO.equals(null)) {
+//                session.setAttribute("loginId", memberDetailDTO.getMemberId());
+//                session.setAttribute("loginEmail", memberDetailDTO.getMemberEmail());
+//                    return new ResponseEntity(HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+//            }
+//        } catch (NullPointerException nullPointerException) {
+//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     @GetMapping("mypage/{memberId}")
     public String mypageForm(@PathVariable Long memberId, Model model) {

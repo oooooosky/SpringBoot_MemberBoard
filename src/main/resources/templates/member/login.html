@@ -13,34 +13,36 @@
                 memberEmail: email,
                 memberPassword: password
             })
-            if (email=="admin") {
-                const reqURL = "/member/admin"
-                $.ajax({
-                    type: "post",
-                    data: loginData,
-                    url: "/member/adminLogin",
-                    contentType: "application/json",
-                    success: function () {
-                        location.href = reqURL;
-                    },
-                    error: function () {
-                        alert("아이디 또는 비밀번호가 틀렸습니다")
-                    }
-                })
-            } else {
+            // if (email=="admin") {
+            //     $.ajax({
+            //         type: "post",
+            //         data: loginData,
+            //         url: "/member/adminLogin",
+            //         contentType: "application/json",
+            //         success: function () {
+            //             location.href = "/member/admin";
+            //         },
+            //         error: function () {
+            //             alert("아이디 또는 비밀번호가 틀렸습니다")
+            //         }
+            //     })
+            // } else {
                 $.ajax({
                     type: "post",
                     data: loginData,
                     url: "/member/login",
                     contentType: "application/json",
                     success: function (reqURL) {
+                        if (reqURL=="admin") {
+                            location.href = "/member/admin"
+                        }
                         location.href = reqURL;
                     },
                     error: function () {
                         alert("아이디 또는 비밀번호가 틀렸습니다")
                     }
                 })
-            }
+            // }
         }
     </script>
 </head>
