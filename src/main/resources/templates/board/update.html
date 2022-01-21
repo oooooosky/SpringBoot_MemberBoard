@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        const update = () => {
+            // console.log("함수호출")
+            const bid = document.getElementById("boardId").value
+            const mid = document.getElementById("memberId").value
+            // const writer = document.getElementById("boardWriter").value
+            const title = document.getElementById("boardTitle").value
+            const contents = document.getElementById("boardContents").value
+            const filename = document.getElementById("boardFilename").value
+            // console.log(bid, mid, writer, title, contents, filename)
+                const updateData = JSON.stringify({
+                    boardId: bid,
+                    memberId: mid,
+                    // boardWriter: writer,
+                    boardTitle: title,
+                    boardContents:contents,
+                    boardFilename: filename
+                })
+                const reqURL = "/board/"+bid
+                $.ajax({
+                    type: "put",
+                    data: updateData,
+                    url: reqURL,
+                    contentType: "application/json",
+                    success: function () {
+                        location.href = reqURL
+                    },
+                    error: function () {
+                        alert("ajax 오류")
+                    }
+                })
+
+        }
+    </script>
+</head>
+<body>
+<h2>update.html</h2>
+작성자 : <p th:text="${session.loginEmail}"></p>
+<form action="/board/mypage" method="post">
+    <input type="hidden" th:value="${board.boardId}" id="boardId" name="boardId" readonly>
+    <input type="hidden" th:value="${board.memberId}" id="memberId" name="memberId" readonly>
+    <input type="hidden" th:value="${board.boardFilename}" id="boardFilename" name="boardFilename" readonly>
+<!--    <input type="text" th:value="${session.loginEmail}" readonly>-->
+    <input type="text" th:value="${board.boardTitle}" id="boardTitle" name="boardTitle">
+    <input type="text" th:value="${board.boardContents}" id="boardContents" name="boardContents">
+</form>
+<img th:src="@{|/image/${board.boardFilename}|}" alt="">
+<button onclick="update()">수정</button>
+</body>
+</html>

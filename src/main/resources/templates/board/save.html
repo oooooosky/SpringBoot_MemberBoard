@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>save.html</h2>
+작성자 : <p th:text="${session.loginEmail}"></p>
+<form action="/board/save" method="post" enctype="multipart/form-data" th:object="${board}">
+    <input type="hidden" id="memberId" name="memberId" th:value="${session.loginId}" readonly>
+<!--    <input type="text" id="boardWriter" name="boardWriter" th:value="${session.loginEmail}" readonly>-->
+    <input type="text" th:field="*{boardTitle}" placeholder="제목">
+    <input type="text" th:field="*{boardContents}" placeholder="내용">
+    <input type="file" th:field="*{boardFile}">
+    <input type="submit" value="글작성">
+</form>
+</body>
+</html>

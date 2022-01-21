@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        const loginCheck = () => {
+            const email = document.getElementById("memberEmail").value
+            const password = document.getElementById("memberPassword").value
+            // console.log(email, password)
+            const loginData = JSON.stringify({
+                memberEmail: email,
+                memberPassword: password
+            })
+            if (email=="admin") {
+                const reqURL = "/member/admin"
+                $.ajax({
+                    type: "post",
+                    data: loginData,
+                    url: "/member/adminLogin",
+                    contentType: "application/json",
+                    success: function () {
+                        location.href = reqURL;
+                    },
+                    error: function () {
+                        alert("아이디 또는 비밀번호가 틀렸습니다")
+                    }
+                })
+            } else {
+                $.ajax({
+                    type: "post",
+                    data: loginData,
+                    url: "/member/login",
+                    contentType: "application/json",
+                    success: function (reqURL) {
+                        location.href = reqURL;
+                    },
+                    error: function () {
+                        alert("아이디 또는 비밀번호가 틀렸습니다")
+                    }
+                })
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>login.html</h2>
+<form action="/member/login" name="loginForm" method="post" th:object="${member}">
+    <input type="text" th:field="*{memberEmail}" placeholder="이메일">
+    <input type="text" th:field="*{memberPassword}" placeholder="비밀번호">
+</form>
+<button onclick="loginCheck()">로그인(ajax)</button>
+</body>
+</html>

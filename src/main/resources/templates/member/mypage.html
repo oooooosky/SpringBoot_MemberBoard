@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        const update = () => {
+            // console.log("함수호출")
+            const id = document.getElementById("memberId").value
+            const email = document.getElementById("memberEmail").value
+            const name = document.getElementById("memberName").value
+            const phone = document.getElementById("memberPhone").value
+            const filename = document.getElementById("memberFilename").value
+            const inputPw = document.getElementById("memberPassword").value
+            const DBPw = "[[${member.memberPassword}]]"
+            // console.log(id, email, name, phone, inputPw, DBPw)
+            if (inputPw==DBPw) {
+                const updateData = JSON.stringify({
+                    memberId: id,
+                    memberEmail:email,
+                    memberName: name,
+                    memberPhone:phone,
+                    memberPassword: DBPw,
+                    memberFilename: filename
+                })
+                const reqURL = "/member/"+id
+                $.ajax({
+                    type: "put",
+                    data: updateData,
+                    url: reqURL,
+                    contentType: "application/json",
+                    success: function () {
+                        location.href = "/board/paging"
+                    },
+                    error: function () {
+                        alert("ajax 오류")
+                    }
+                })
+            } else {
+                alert("비밀번호가 틀렸습니다")
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>mypage.html</h2>
+<form action="/member/mypage" method="post">
+    <input type="text" th:value="${member.memberId}" id="memberId" name="memberId" readonly>
+    <input type="hidden" th:value="${member.memberFilename}" id="memberFilename" name="memberFilename" readonly>
+    <input type="text" th:value="${member.memberEmail}" id="memberEmail" name="memberEmail" readonly>
+    <input type="text" th:value="${member.memberName}" id="memberName" name="memberName">
+    <input type="text" th:value="${member.memberPhone}" id="memberPhone" name="memberPhone">
+    <input type="text" id="memberPassword" name="memberPassword" placeholder="비밀번호">
+</form>
+<img th:src="@{|/image/${member.memberFilename}|}" alt="">
+<button onclick="update()">수정</button>
+</body>
+</html>
