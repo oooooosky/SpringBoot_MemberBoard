@@ -46,7 +46,7 @@
         <th th:text="${board.updateTime}"></th>
         <th><a th:if="${board.memberId.equals(session.loginId)}" th:href="@{|/board/update/${board.boardId}|}">수정페이지</a></th>
         <th><button th:if="${board.memberId.equals(session.loginId)}" th:onclick="boardDelete([[${board.boardId}]])">삭제</button></th>
-        <th><button th:if="${board.memberEmail.equals('admin')}" th:onclick="boardDelete([[${board.boardId}]])">관리자 삭제</button></th>
+        <th><button th:if="${session.loginEmail.equals('admin')}" th:onclick="boardDelete([[${board.boardId}]])">관리자 삭제</button></th>
     </tr>
     </tbody>
 </table>

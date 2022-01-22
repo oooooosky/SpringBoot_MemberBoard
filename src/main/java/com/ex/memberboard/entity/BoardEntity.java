@@ -66,9 +66,9 @@ public class BoardEntity extends BaseEntity{
         return boardEntity;
     }
 
-    public static BoardEntity toHitsBoardEntity(BoardEntity boardEntity) {
-        boardEntity.setId(boardEntity.getId());
-        boardEntity.setBoardHits((boardEntity.getBoardHits()+1));
-        return boardEntity;
-    }
+//    public static BoardEntity toHitsBoardEntity(BoardEntity boardEntity) {
+//        boardEntity.setId(boardEntity.getId());
+//        boardEntity.setBoardHits((boardEntity.getBoardHits()+1));
+//        return boardEntity;
+//    }
 }

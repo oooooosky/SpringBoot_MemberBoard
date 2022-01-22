@@ -12,8 +12,8 @@ public class BoardUpdateDTO {
     private Long boardId;
     private Long memberId;
 //    private String BoardWriter;
-    private String BoardTitle;
-    private String BoardContents;
-    private String BoardFilename;
+    private String boardTitle;
+    private String boardContents;
+    private String boardFilename;
 
 }
