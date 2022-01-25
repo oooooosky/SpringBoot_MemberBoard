@@ -71,7 +71,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    @Transactional
+    @Transactional  // jpql을 쓰기 위해선 트랙잭셔널을 반드시 붙여줘야함, 2가지 이상의 엔티티를 호출 할 때도 사용
     public BoardDetailDTO findById(Long boardId) {
         int boardHits = br.boardHits(boardId);
         BoardEntity boardEntity = br.findById(boardId).get();

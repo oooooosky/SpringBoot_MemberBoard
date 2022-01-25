@@ -8,6 +8,7 @@
         const emailCheck = () => {
             const inputEmail = document.getElementById("memberEmail").value
             const checkResult = document.getElementById("checkResult")
+            const success = document.getElementById("success")
             $.ajax({
                 type: "post",
                 url: "/member/emailCheck",
@@ -15,6 +16,7 @@
                 success: function () {
                     checkResult.style.color="green"
                     checkResult.innerHTML="사용가능한 이메일입니다"
+                    success.innerHTML="<input type='submit' value='회원가입'>"
                 },
                 error: function () {
                     checkResult.style.color="red"
@@ -34,21 +36,24 @@
 <form action="/member/save" method="post" th:object="${member}" enctype="multipart/form-data">
 
     <input type="text" th:field="*{memberEmail}" placeholder="이메일">
-<!--    <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" th:errorclass="field-error"></p>-->
     <span id="checkResult"></span>
+<!--    <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" th:errorclass="field-error"></p>-->
 
-<!--    <p th:if="${#fields.hasErrors('memberPassword')}" th:errors="*{memberPassword}" th:errorclass="field-error"></p>-->
     <input type="text" th:field="*{memberPassword}" placeholder="비밀번호">
+<!--    <p th:if="${#fields.hasErrors('memberPassword')}" th:errors="*{memberPassword}" th:errorclass="field-error"></p>-->
 
-<!--    <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}" th:errorclass="field-error"></p>-->
     <input type="text" th:field="*{memberName}" placeholder="이름">
+<!--    <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}" th:errorclass="field-error"></p>-->
 
-<!--    <p th:if="${#fields.hasErrors('memberPhone')}" th:errors="*{memberPhone}" th:errorclass="field-error"></p>-->
     <input type="text" th:field="*{memberPhone}" placeholder="전화번호">
+<!--    <p th:if="${#fields.hasErrors('memberPhone')}" th:errors="*{memberPhone}" th:errorclass="field-error"></p>-->
 
     <input type="file" th:field="*{memberFile}">
 
-    <input type="submit" value="회원가입">
+<!--    <input type="submit" value="회원가입">-->
+
+    <div id="success"></div>
+
 </form>
     <button onclick="emailCheck()">이메일 중복체크</button>
 </body>
