@@ -45,7 +45,7 @@ public class CommentEntity extends BaseEntity {
 
     public static List<CommentDetailDTO> toCommentEntityList(List<CommentEntity> commentEntityList) {
         List<CommentDetailDTO> commentDetailDTOList = new ArrayList<>();
-        for (CommentEntity c: commentEntityList) {
+        for (CommentEntity c : commentEntityList) {
             commentDetailDTOList.add(CommentDetailDTO.toCommentDetailDTO(c));
         }
         return commentDetailDTOList;

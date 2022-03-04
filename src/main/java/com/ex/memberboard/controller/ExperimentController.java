@@ -36,7 +36,7 @@ public class ExperimentController {
     }
 
     @GetMapping("kakaoLogin")
-    public String kakaoLogin(@RequestParam(value = "code", required = false) String code, Model model) throws Exception{
+    public String kakaoLogin(@RequestParam(value = "code", required = false) String code, Model model) throws Exception {
         System.out.println("#########" + code);
 
         String access_Token = es.getKakaoAccessToken(code);

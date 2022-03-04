@@ -13,16 +13,16 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 public class MemberSaveDTO {
 
-//    @NotBlank
+    //    @NotBlank
     private String memberEmail;
 
-//    @NotBlank
+    //    @NotBlank
     private String memberPassword;
 
-//    @NotBlank
+    //    @NotBlank
     private String memberName;
 
-//    @NotBlank
+    //    @NotBlank
     private String memberPhone;
 
 

@@ -13,7 +13,7 @@ public interface MemberService {
 
     MemberDetailDTO findByEmail(MemberLoginDTO memberLoginDTO);
 
-    String  emailCheck(String memberEmail);
+    String emailCheck(String memberEmail);
 
     MemberDetailDTO findById(Long memberId);
 

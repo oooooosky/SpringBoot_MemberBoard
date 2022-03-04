@@ -43,7 +43,7 @@ public class BoardDetailDTO {
 
     public static List<BoardDetailDTO> toBoardDetailList(List<BoardEntity> boardEntityList) {
         List<BoardDetailDTO> boardDetailDTOList = new ArrayList<>();
-        for (BoardEntity b: boardEntityList) {
+        for (BoardEntity b : boardEntityList) {
             boardDetailDTOList.add(toBoardDetailDTO(b));
         }
         return boardDetailDTOList;

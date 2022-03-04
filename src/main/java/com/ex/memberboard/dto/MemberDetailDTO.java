@@ -41,7 +41,7 @@ public class MemberDetailDTO {
 
     public static List<MemberDetailDTO> toMemberDetailDTOList(List<MemberEntity> memberEntityList) {
         List<MemberDetailDTO> memberDetailDTOList = new ArrayList<>();
-        for(MemberEntity m: memberEntityList) {
+        for (MemberEntity m : memberEntityList) {
             memberDetailDTOList.add(toMemberDetailDTO(m));
         }
         return memberDetailDTOList;

@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 public class BoardSaveDTO {
 
-//    private String BoardWriter;
+    //    private String BoardWriter;
     private String BoardTitle;
     private String BoardContents;
     private Long memberId;

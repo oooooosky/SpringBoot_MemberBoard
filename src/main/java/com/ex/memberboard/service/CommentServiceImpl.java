@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CommentServiceImpl implements CommentService{
+public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository cr;
     private final BoardRepository br;
@@ -35,7 +35,7 @@ public class CommentServiceImpl implements CommentService{
         BoardEntity boardEntity = br.findById(boardId).get();
         List<CommentEntity> commentEntityList = boardEntity.getCommentEntityList();
         List<CommentDetailDTO> commentList = CommentEntity.toCommentEntityList(commentEntityList);
-        for (CommentEntity c: commentEntityList) {
+        for (CommentEntity c : commentEntityList) {
             CommentDetailDTO commentDetailDTO = CommentDetailDTO.toCommentDetailDTO(c);
             commentList.add(commentDetailDTO);
         }

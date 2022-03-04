@@ -7,7 +7,7 @@
     <script>
         function deleteById(memberId) {
             console.log(memberId)
-            const reqUrl = "/member/"+memberId
+            const reqUrl = "/member/" + memberId
             $.ajax({
                 type: "delete",
                 url: reqUrl,
@@ -42,7 +42,9 @@
         <td th:text="${member.memberEmail}">이메일</td>
         <td th:text="${member.memberPassword}">비밀번호</td>
         <td th:text="${member.memberName}">이름</td>
-        <td><button th:onclick="deleteById([[${member.memberId}]])">삭제</button></td>
+        <td>
+            <button th:onclick="deleteById([[${member.memberId}]])">삭제</button>
+        </td>
     </tr>
     </tbody>
 </table>

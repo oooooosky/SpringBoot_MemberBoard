@@ -20,7 +20,8 @@ public class CommentController {
     private final CommentService cs;
 
     @PostMapping("save")
-    public @ResponseBody List<CommentDetailDTO> save(@ModelAttribute CommentSaveDTO commentSaveDTO) {
+    public @ResponseBody
+    List<CommentDetailDTO> save(@ModelAttribute CommentSaveDTO commentSaveDTO) {
         Long commentId = cs.save(commentSaveDTO);
         List<CommentDetailDTO> commentList = cs.findAll(commentSaveDTO.getBoardId());
         return commentList;

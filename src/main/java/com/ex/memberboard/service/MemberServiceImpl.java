@@ -26,8 +26,8 @@ public class MemberServiceImpl implements MemberService {
 
         MultipartFile memberFile = memberSaveDTO.getMemberFile();
         String memberFilename = memberFile.getOriginalFilename();
-        memberFilename = System.currentTimeMillis()+"-"+memberFilename;
-        String savePath = "/Users/sky/EclipseJava/source/SpringBoot/MemberBoard/src/main/resources/static/image/"+memberFilename;
+        memberFilename = System.currentTimeMillis() + "-" + memberFilename;
+        String savePath = "/Users/sky/EclipseJava/source/SpringBoot/MemberBoard/src/main/resources/static/image/" + memberFilename;
         if (!memberFile.isEmpty()) {
             memberFile.transferTo(new File(savePath));
         }
@@ -54,18 +54,18 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public String  emailCheck(String memberEmail) {
+    public String emailCheck(String memberEmail) {
         String result = "NO";
         try {
             MemberEntity memberEntity = mr.findByMemberEmail(memberEmail);
             if (memberEntity.equals(null)) {
-                result="OK";
+                result = "OK";
                 return result;
             } else {
                 return result;
             }
         } catch (NullPointerException nullPointerException) {
-            result="OK";
+            result = "OK";
             return result;
         }
     }

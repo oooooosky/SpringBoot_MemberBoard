@@ -84,7 +84,7 @@ public class MemberController {
                 if (memberDetailDTO.getMemberEmail().equals("admin")) {
                     session.setAttribute("loginId", memberDetailDTO.getMemberId());
                     session.setAttribute("loginEmail", memberDetailDTO.getMemberEmail());
-                    return new ResponseEntity<String>("admin",HttpStatus.OK);
+                    return new ResponseEntity<String>("admin", HttpStatus.OK);
                 }
                 session.setAttribute("loginId", memberDetailDTO.getMemberId());
                 session.setAttribute("loginEmail", memberDetailDTO.getMemberEmail());
@@ -126,7 +126,7 @@ public class MemberController {
     @GetMapping("mypage/{memberId}")
     public String mypageForm(@PathVariable Long memberId, Model model) {
         MemberDetailDTO memberDetailDTO = ms.findById(memberId);
-        model.addAttribute("member",memberDetailDTO);
+        model.addAttribute("member", memberDetailDTO);
         return "member/mypage";
     }
 
@@ -151,7 +151,7 @@ public class MemberController {
     @DeleteMapping("{memberId}")
     public ResponseEntity deleteById(@PathVariable Long memberId) {
         ms.deleteById(memberId);
-        return  new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

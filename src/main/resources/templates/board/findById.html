@@ -6,7 +6,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
         const boardDelete = (boardId) => {
-            const reqUrl="/board/"+boardId
+            const reqUrl = "/board/" + boardId
             $.ajax({
                 type: "delete",
                 url: reqUrl,
@@ -44,9 +44,18 @@
         <th th:text="${board.boardContents}"></th>
         <th th:text="${board.createTime}"></th>
         <th th:text="${board.updateTime}"></th>
-        <th><a th:if="${board.memberId.equals(session.loginId)}" th:href="@{|/board/update/${board.boardId}|}">수정페이지</a></th>
-        <th><button th:if="${board.memberId.equals(session.loginId)}" th:onclick="boardDelete([[${board.boardId}]])">삭제</button></th>
-        <th><button th:if="${session.loginEmail.equals('admin')}" th:onclick="boardDelete([[${board.boardId}]])">관리자 삭제</button></th>
+        <th><a th:if="${board.memberId.equals(session.loginId)}" th:href="@{|/board/update/${board.boardId}|}">수정페이지</a>
+        </th>
+        <th>
+            <button th:if="${board.memberId.equals(session.loginId)}" th:onclick="boardDelete([[${board.boardId}]])">
+                삭제
+            </button>
+        </th>
+        <th>
+            <button th:if="${session.loginEmail.equals('admin')}" th:onclick="boardDelete([[${board.boardId}]])">관리자
+                삭제
+            </button>
+        </th>
     </tr>
     </tbody>
 </table>
@@ -60,18 +69,18 @@
 
 <table>
     <thead>
-        <tr>
-            <th>댓글번호</th>
-            <th>댓글작성자</th>
-            <th>댓글내용</th>
-        </tr>
+    <tr>
+        <th>댓글번호</th>
+        <th>댓글작성자</th>
+        <th>댓글내용</th>
+    </tr>
     </thead>
     <tbody>
-        <tr th:each="comment: ${comment}">
-            <th th:text="${comment.commentId}"></th>
-            <th th:text="${comment.commentWriter}"></th>
-            <th th:text="${comment.commentContents}"></th>
-        </tr>
+    <tr th:each="comment: ${comment}">
+        <th th:text="${comment.commentId}"></th>
+        <th th:text="${comment.commentWriter}"></th>
+        <th th:text="${comment.commentContents}"></th>
+    </tr>
     </tbody>
 </table>
 
@@ -87,9 +96,9 @@
             type: "post",
             url: "/comment/save",
             data: {
-                "memberId" : memberId,
-                "commentContents" : commentContents,
-                "boardId" : boardId
+                "memberId": memberId,
+                "commentContents": commentContents,
+                "boardId": boardId
             },
             dataType: "json",
             success: function (result) {

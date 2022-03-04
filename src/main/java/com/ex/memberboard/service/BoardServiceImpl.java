@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService {
 
         // 요청한 페이지가 1이면 페이지 값을 0으로 하고, 1이 아니면 요청 페이지에서 1을 뺀다.
 //        page = page-1;
-        page = (page==1)? 0:(page-1);
+        page = (page == 1) ? 0 : (page - 1);
         // Pageable 타입의 pagealbe 객체를 넘겨주는 findAll() 호출
         Page<BoardEntity> boardEntities = br.findAll(PageRequest.of(page, PagingConst.PAGE_LIMIT, Sort.by(Sort.Direction.DESC, "id")));
         // findAll(PageRequest.of(어떤 페이지를, 어떤 갯수로), 정렬 (어떤 정렬 ,"기준으로 삼을 Entity 클래스의 필드이름"))
@@ -57,8 +57,8 @@ public class BoardServiceImpl implements BoardService {
     public Long save(BoardSaveDTO boardSaveDTO) throws IOException {
         MultipartFile boardFile = boardSaveDTO.getBoardFile();
         String boardFilename = boardFile.getOriginalFilename();
-        boardFilename = System.currentTimeMillis()+"-"+boardFilename;
-        String savePath = "/Users/sky/EclipseJava/source/SpringBoot/MemberBoard/src/main/resources/static/image/"+boardFilename;
+        boardFilename = System.currentTimeMillis() + "-" + boardFilename;
+        String savePath = "/Users/sky/EclipseJava/source/SpringBoot/MemberBoard/src/main/resources/static/image/" + boardFilename;
         if (!boardFile.isEmpty()) {
             boardFile.transferTo(new File(savePath));
         }

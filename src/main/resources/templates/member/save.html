@@ -14,22 +14,22 @@
                 url: "/member/emailCheck",
                 data: {memberEmail: inputEmail},
                 success: function () {
-                    checkResult.style.color="green"
-                    checkResult.innerHTML="사용가능한 이메일입니다"
-                    success.innerHTML="<input type='submit' value='회원가입'>"
+                    checkResult.style.color = "green"
+                    checkResult.innerHTML = "사용가능한 이메일입니다"
+                    success.innerHTML = "<input type='submit' value='회원가입'>"
                 },
                 error: function () {
-                    checkResult.style.color="red"
-                    checkResult.innerHTML="이미 있는 이메일입니다"
+                    checkResult.style.color = "red"
+                    checkResult.innerHTML = "이미 있는 이메일입니다"
                 }
             })
         }
     </script>
-<!--    <style>-->
-<!--        .field-error {-->
-<!--            color:red;-->
-<!--        }-->
-<!--    </style>-->
+    <!--    <style>-->
+    <!--        .field-error {-->
+    <!--            color:red;-->
+    <!--        }-->
+    <!--    </style>-->
 </head>
 <body>
 <h2>save.html</h2>
@@ -37,24 +37,24 @@
 
     <input type="text" th:field="*{memberEmail}" placeholder="이메일">
     <span id="checkResult"></span>
-<!--    <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" th:errorclass="field-error"></p>-->
+    <!--    <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" th:errorclass="field-error"></p>-->
 
     <input type="text" th:field="*{memberPassword}" placeholder="비밀번호">
-<!--    <p th:if="${#fields.hasErrors('memberPassword')}" th:errors="*{memberPassword}" th:errorclass="field-error"></p>-->
+    <!--    <p th:if="${#fields.hasErrors('memberPassword')}" th:errors="*{memberPassword}" th:errorclass="field-error"></p>-->
 
     <input type="text" th:field="*{memberName}" placeholder="이름">
-<!--    <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}" th:errorclass="field-error"></p>-->
+    <!--    <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}" th:errorclass="field-error"></p>-->
 
     <input type="text" th:field="*{memberPhone}" placeholder="전화번호">
-<!--    <p th:if="${#fields.hasErrors('memberPhone')}" th:errors="*{memberPhone}" th:errorclass="field-error"></p>-->
+    <!--    <p th:if="${#fields.hasErrors('memberPhone')}" th:errors="*{memberPhone}" th:errorclass="field-error"></p>-->
 
     <input type="file" th:field="*{memberFile}">
 
-<!--    <input type="submit" value="회원가입">-->
+    <!--    <input type="submit" value="회원가입">-->
 
     <div id="success"></div>
 
 </form>
-    <button onclick="emailCheck()">이메일 중복체크</button>
+<button onclick="emailCheck()">이메일 중복체크</button>
 </body>
 </html>

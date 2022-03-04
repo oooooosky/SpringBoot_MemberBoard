@@ -22,7 +22,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         // 세션 가져옴
         HttpSession session = request.getSession();
         // 세션에 로그인 정보가 있는지 확인
-        if (session.getAttribute("loginId")==null) {
+        if (session.getAttribute("loginId") == null) {
             // 미 로그인 상태
             // 로그인을 하지 않은 경우 바로 로그인페이지로 보내고, 로그인을 하면 요청한 화면을 보여줌.
             session.setAttribute("redirectURL", requestURI);

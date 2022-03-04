@@ -15,16 +15,16 @@
             const inputPw = document.getElementById("memberPassword").value
             const DBPw = "[[${member.memberPassword}]]"
             // console.log(id, email, name, phone, inputPw, DBPw)
-            if (inputPw==DBPw) {
+            if (inputPw == DBPw) {
                 const updateData = JSON.stringify({
                     memberId: id,
-                    memberEmail:email,
+                    memberEmail: email,
                     memberName: name,
-                    memberPhone:phone,
+                    memberPhone: phone,
                     memberPassword: DBPw,
                     memberFilename: filename
                 })
-                const reqURL = "/member/"+id
+                const reqURL = "/member/" + id
                 $.ajax({
                     type: "put",
                     data: updateData,

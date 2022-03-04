@@ -32,8 +32,8 @@ public class BoardController {
         // startPage, endPage 계산
         // 현재 2페이지 일 때 시작 페이지 1, 끝 페이지 3
         // 현재 7페이지 일 때 시작 페이지 6, 끝 페이지 8
-        int startPage = (((int)(Math.ceil((double) pageable.getPageNumber()/ PagingConst.BLOCK_LIMIT)))-1)*PagingConst.BLOCK_LIMIT + 1;
-        int endPage = ((startPage+PagingConst.BLOCK_LIMIT-1)<boardList.getTotalPages())?startPage+PagingConst.BLOCK_LIMIT-1 : boardList.getTotalPages();
+        int startPage = (((int) (Math.ceil((double) pageable.getPageNumber() / PagingConst.BLOCK_LIMIT))) - 1) * PagingConst.BLOCK_LIMIT + 1;
+        int endPage = ((startPage + PagingConst.BLOCK_LIMIT - 1) < boardList.getTotalPages()) ? startPage + PagingConst.BLOCK_LIMIT - 1 : boardList.getTotalPages();
 
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
